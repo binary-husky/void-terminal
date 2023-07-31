@@ -1,0 +1,7 @@
+void_terminal/docs/gradio-3.32.2-py3-none-any.whl
+void_terminal
+gpt_log
+build
+__pycache__
+*.egg-info
+test.py
