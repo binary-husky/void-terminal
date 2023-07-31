@@ -50,7 +50,7 @@ import void_terminal as vt
 from rich.live import Live
 from rich.markdown import Markdown
 
-llm_model = "gpt-3.5-turbo"
+llm_model = "gpt-3.5-turbo&gpt-4"
 vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
 vt.set_conf(key="LLM_MODEL", value=llm_model)
 plugin = vt.get_plugin_handle('crazy_functions.询问多个大语言模型->同时问询_指定模型')
