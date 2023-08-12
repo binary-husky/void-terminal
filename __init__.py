@@ -18,3 +18,19 @@ def chat_to_markdown_str(chat):
             result += '\n\n---'
     return result
 
+def cli():
+    import argparse
+    # Create ArgumentParser object
+    parser = argparse.ArgumentParser()
+    # Add an argument named 'c' with a short option '-c'.
+    # This argument takes one value.
+    parser.add_argument('input', nargs='+', help='The input string')
+    parser.add_argument('-c', '--cmd', action='store_true', help="Call the commandline helper plugin.")
+    args = parser.parse_args()
+    if args.cmd:
+        # use the commandline helper shortcut
+        print('cmd', args.input)
+    else:
+        # echo, do nothing
+        print(args.input)
+

@@ -2,6 +2,7 @@ import setuptools, glob, os, fnmatch, shutil
 
 try:
     shutil.copyfile('__init__.py', 'void_terminal/__init__.py')
+    shutil.copyfile('__init__.py', 'void_terminal/__init__.py')
 except:
     msg = "You must first clone the mother project with `git clone --depth=1 https://github.com/binary-husky/gpt_academic.git void_terminal`."
     for i in range(1000): print(msg)
@@ -39,7 +40,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="0.0.1",
+    version="0.0.2",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
@@ -54,6 +55,9 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    entry_points = {
+        'console_scripts': ['vt=void_terminal:cli'],
+    },
     package_dir={"": "."},
     package_data={"": extra_files},
     include_package_data=True,
