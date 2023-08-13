@@ -28,7 +28,9 @@ vt -c 请列举当前系统运行的所有docker容器
 - Config (For all possible configurations, read [`config.py`](https://github.com/binary-husky/gpt_academic/blob/master/config.py) in the mother project.)
 ```
 # this will write configuration into .bashrc
-vt --set_conf API_KEY "sk-abcdefghijklmn"
+vt --set_conf API_KEY "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+vt --set_conf LLM_MODEL "gpt-3.5-turbo"
+vt --set_conf DEFAULT_WORKER_NUM "20"
 ```
 
 
