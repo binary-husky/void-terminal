@@ -2,6 +2,36 @@
 
 The CLI & python API for the well-known project [`gpt_academic`](https://github.com/binary-husky/gpt_academic.git).
 
+# Installation
+Pip installation.
+```
+pip install void-terminal
+```
+
+For source installation, see below.
+
+# Usage (Commandline)
+
+- Chat
+
+```
+vt -a 你好，世界树！
+```
+
+- Ask about how to do a linux command 
+
+```
+vt -c 请列举当前系统运行的所有docker容器
+```
+
+
+- Config (For all possible configurations, read [`config.py`](https://github.com/binary-husky/gpt_academic/blob/master/config.py) in the mother project.)
+```
+# this will write configuration into .bashrc
+vt --set_conf API_KEY "sk-abcdefghijklmn"
+```
+
+
 # Usage (Python API)
 
 - Chat without interaction
@@ -68,11 +98,7 @@ with Live(Markdown(""), auto_refresh=False) as live:
 
 
 
-# Installation
 
-```
-pip install void-terminal
-```
 
 # Installation from source (Equal to running `init.bash`)
 
