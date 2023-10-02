@@ -16,7 +16,7 @@ def pack_up_fix_import():
         buf = buf.replace("importlib.import_module('config_private')",
                     "importlib.import_module('void_terminal.config_private')")
         buf = buf.replace(r"""AssertionError("你提供了错误的API_KEY。\n\n1. 临时解决方案：直接在输入区键入api_key，然后回车提交。\n\n2. 长效解决方案：在config.py中配置。")""",
-                          r"""AssertionError("You have not provide an API_KEY. \n\n1. In python, run `void_terminal.set_conf('API_KEY', value="sk-abcd")` to load api key")\n\n2. In bash, run `vt --set_conf API_KEY "sk-abcd"`""")
+                          r"""AssertionError("You have not provide an API_KEY. \n\n1. In python, run `void_terminal.set_conf('API_KEY', value='sk-abcd')` to load api key\n\n2. In bash, run `vt --set_conf API_KEY 'sk-abcd'`")""")
         with open(fp, 'w', encoding='utf-8', newline='') as fd:
             fd.write(buf)
     return
