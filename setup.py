@@ -1,11 +1,34 @@
-import setuptools, glob, os, fnmatch, shutil
+import setuptools, glob, os, fnmatch, shutil, shlex
+from setup_import.fix_import import main
+# main(('--application-directories', '.:void_terminal', 'void_terminal/crazy_functions/Langchain知识库.py',))
+# main(('void_terminal/crazy_functions/Langchain知识库.py',))
+
+def pack_up_fix_import():
+    source_list = glob.glob('./void_terminal/**/*.py', recursive=True)
+    confuse_list = [os.path.basename(t).rsplit('.py')[0] for t in glob.glob('./void_terminal/*.py')]
+    from setup_import.fix_import import main
+    for fp in source_list:
+        main(('--application-directories', '.:void_terminal', fp,))
+        with open(fp, 'r', encoding='utf-8', newline='') as fd:
+            buf = fd.read()
+        buf = buf.replace("importlib.import_module('config')",
+            "importlib.import_module('void_terminal.config')")
+        buf = buf.replace("importlib.import_module('config_private')",
+                    "importlib.import_module('void_terminal.config_private')")
+        buf = buf.replace(r"""AssertionError("你提供了错误的API_KEY。\n\n1. 临时解决方案：直接在输入区键入api_key，然后回车提交。\n\n2. 长效解决方案：在config.py中配置。")""",
+                          r"""AssertionError("You have not provide an API_KEY. \n\n1. In python, run `void_terminal.set_conf('API_KEY', value="sk-abcd")` to load api key")\n\n2. In bash, run `vt --set_conf API_KEY "sk-abcd"`""")
+        with open(fp, 'w', encoding='utf-8', newline='') as fd:
+            fd.write(buf)
+    return
+
+pack_up_fix_import()
 
 try:
     shutil.copyfile('__init__.py', 'void_terminal/__init__.py')
     shutil.copyfile('__init__.py', 'void_terminal/__init__.py')
 except:
     msg = "You must first clone the mother project with `git clone --depth=1 https://github.com/binary-husky/gpt_academic.git void_terminal`."
-    for i in range(1000): print(msg)
+    for i in range(100): print(msg)
     raise RuntimeError(msg)
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -40,7 +63,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="0.0.4",
+    version="0.0.5",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",

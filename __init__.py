@@ -1,13 +1,12 @@
 import sys, os
-sys.path.append(os.path.dirname(__file__))
 
-from toolbox import get_conf
-from toolbox import set_conf
-from toolbox import set_multi_conf
-from toolbox import get_plugin_handle
-from toolbox import get_plugin_default_kwargs
-from toolbox import get_chat_handle
-from toolbox import get_chat_default_kwargs
+from void_terminal.toolbox import get_conf
+from void_terminal.toolbox import set_conf
+from void_terminal.toolbox import set_multi_conf
+from void_terminal.toolbox import get_plugin_handle
+from void_terminal.toolbox import get_plugin_default_kwargs
+from void_terminal.toolbox import get_chat_handle
+from void_terminal.toolbox import get_chat_default_kwargs
 from functools import wraps
 
 def chat_to_markdown_str(chat):
@@ -48,23 +47,24 @@ class VoidTerminal():
     
 vt = VoidTerminal()
 
-vt.get_conf = silence_stdout_fn(get_conf)
-vt.set_conf = silence_stdout_fn(set_conf)
-vt.set_multi_conf = silence_stdout_fn(set_multi_conf)
-vt.get_plugin_handle = silence_stdout_fn(get_plugin_handle)
-vt.get_plugin_default_kwargs = silence_stdout_fn(get_plugin_default_kwargs)
-vt.get_chat_handle = silence_stdout_fn(get_chat_handle)
-vt.get_chat_default_kwargs = silence_stdout_fn(get_chat_default_kwargs)
-vt.chat_to_markdown_str = chat_to_markdown_str
 
-get_conf = vt.get_conf
-set_conf = vt.set_conf
-set_multi_conf = vt.set_multi_conf
-get_plugin_handle = vt.get_plugin_handle
-get_plugin_default_kwargs = vt.get_plugin_default_kwargs
-get_chat_handle = vt.get_chat_handle
-get_chat_default_kwargs = vt.get_chat_default_kwargs
-chat_to_markdown_str = vt.chat_to_markdown_str
+get_conf = silence_stdout_fn(get_conf)
+set_conf = silence_stdout_fn(set_conf)
+set_multi_conf = silence_stdout_fn(set_multi_conf)
+get_plugin_handle = silence_stdout_fn(get_plugin_handle)
+get_plugin_default_kwargs = silence_stdout_fn(get_plugin_default_kwargs)
+get_chat_handle = silence_stdout_fn(get_chat_handle)
+get_chat_default_kwargs = silence_stdout_fn(get_chat_default_kwargs)
+chat_to_markdown_str = = chat_to_markdown_str
+
+vt.get_conf = get_conf
+vt.set_conf = set_conf
+vt.set_multi_conf = set_multi_conf
+vt.get_plugin_handle = get_plugin_handle
+vt.get_plugin_default_kwargs = get_plugin_default_kwargs
+vt.get_chat_handle = get_chat_handle
+vt.get_chat_default_kwargs = get_chat_default_kwargs
+vt.chat_to_markdown_str = chat_to_markdown_str
 
 
 def chat_to_markdown_str(chat):
@@ -126,11 +126,11 @@ def cli():
     if args.ask:
         inputs = " ".join(args.input)
         LLM_MODEL, = vt.get_conf('LLM_MODEL')
-        plugin_shortcut(inputs, plugin='crazy_functions.询问多个大语言模型->同时问询_指定模型', advanced_arg={"advanced_arg": LLM_MODEL})
+        plugin_shortcut(inputs, plugin='void_terminal.crazy_functions.询问多个大语言模型->同时问询_指定模型', advanced_arg={"advanced_arg": LLM_MODEL})
     elif args.cmd:
         # use the commandline helper shortcut
         inputs = " ".join(args.input)
-        plugin_shortcut(inputs, plugin='crazy_functions.命令行助手->命令行助手')
+        plugin_shortcut(inputs, plugin='void_terminal.crazy_functions.命令行助手->命令行助手')
     else:
         # echo, do nothing
         print(args.input)
