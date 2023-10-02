@@ -3,25 +3,28 @@
 The CLI & python API for the well-known project [`gpt_academic`](https://github.com/binary-husky/gpt_academic.git).
 
 # Installation
-Pip installation.
+1. Pip installation.
 ```
 pip install void-terminal
 ```
 
-For source installation, see below.
+2. source installation.
+```
+bash init.bash
+```
 
 # Usage (Commandline)
 
 - Chat
 
 ```
-vt -a 你好，世界树！
+vt -a "你好，世界树！"
 ```
 
 - Ask about how to do a linux command 
 
 ```
-vt -c 请列举当前系统运行的所有docker容器
+vt -c "请列举当前系统运行的所有docker容器"
 ```
 
 
@@ -64,7 +67,7 @@ from rich.markdown import Markdown
 vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
 vt.set_conf(key="LLM_MODEL", value="gpt-3.5-turbo")
 
-plugin = vt.get_plugin_handle('crazy_functions.批量Markdown翻译->Markdown翻译指定语言')
+plugin = vt.get_plugin_handle('void_terminal.crazy_functions.批量Markdown翻译->Markdown翻译指定语言')
 plugin_kwargs = vt.get_plugin_default_kwargs()
 plugin_kwargs['main_input'] = './README.md'
 my_working_plugin = plugin(**plugin_kwargs)
@@ -86,7 +89,7 @@ from rich.markdown import Markdown
 llm_model = "gpt-3.5-turbo&gpt-4"
 vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
 vt.set_conf(key="LLM_MODEL", value=llm_model)
-plugin = vt.get_plugin_handle('crazy_functions.询问多个大语言模型->同时问询_指定模型')
+plugin = vt.get_plugin_handle('void_terminal.crazy_functions.询问多个大语言模型->同时问询_指定模型')
 plugin_kwargs = vt.get_plugin_default_kwargs()
 plugin_kwargs['main_input'] = '你好, 世界树。'
 plugin_kwargs['plugin_kwargs'] = {"advanced_arg": llm_model}
@@ -103,23 +106,4 @@ with Live(Markdown(""), auto_refresh=False) as live:
 
 
 
-# Installation from source (Equal to running `init.bash`)
 
-### 1. (if you have not clone **THIS** resp) Clone this project, **enter the workfolder** via `cd`.
-
-```
-git clone --depth=1 https://github.com/binary-husky/void_terminal.git
-cd void_terminal
-```
-
-### 2. Clone the **mother project** `GPT-Academic` into a new **sub-folder** called `void_terminal`
-
-```
-git clone --depth=1 https://github.com/binary-husky/gpt_academic.git void_terminal
-```
-
-### 3. Run setup
-
-```
-pip install .
-```

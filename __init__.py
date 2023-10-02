@@ -55,7 +55,7 @@ get_plugin_handle = silence_stdout_fn(get_plugin_handle)
 get_plugin_default_kwargs = silence_stdout_fn(get_plugin_default_kwargs)
 get_chat_handle = silence_stdout_fn(get_chat_handle)
 get_chat_default_kwargs = silence_stdout_fn(get_chat_default_kwargs)
-chat_to_markdown_str = = chat_to_markdown_str
+chat_to_markdown_str = chat_to_markdown_str
 
 vt.get_conf = get_conf
 vt.set_conf = set_conf
