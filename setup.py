@@ -87,6 +87,6 @@ setuptools.setup(
     package_data={"": extra_files},
     include_package_data=True,
     packages=setuptools.find_packages(where="."),
-    python_requires=">=3.9",
+    python_requires=">=3.8",
     install_requires=_process_requirements(),
 )
