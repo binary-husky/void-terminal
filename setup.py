@@ -44,6 +44,8 @@ def _process_requirements():
             assert return_code == 0, 'error, status_code is: {}, exit!'.format(return_code)
         if pkg.startswith('./docs'):
             continue
+        elif pkg.startswith('pydantic'):
+            requires.append('pydantic<2')
         else:
             requires.append(pkg)
     return requires
@@ -63,7 +65,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="0.0.6",
+    version="0.0.7",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
