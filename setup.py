@@ -34,21 +34,33 @@ except:
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-    
-def _process_requirements():
-    packages = open('void_terminal/requirements.txt').read().strip().split('\n')
-    requires = []
-    for pkg in packages:
-        if pkg.startswith('git+ssh'):
-            return_code = os.system('pip install {}'.format(pkg))
-            assert return_code == 0, 'error, status_code is: {}, exit!'.format(return_code)
-        if pkg.startswith('./docs'):
-            continue
-        elif pkg.startswith('pydantic'):
-            requires.append('pydantic<2')
-        else:
-            requires.append(pkg)
-    return requires
+
+def _process_requirements(type):
+    if type == 'install_requires':
+        packages = open('void_terminal/requirements.txt').read().strip().split('\n')
+        requires = []
+        for pkg in packages:
+            if pkg.startswith('git+ssh'):
+                return_code = os.system('pip install {}'.format(pkg))
+                assert return_code == 0, 'error, status_code is: {}, exit!'.format(return_code)
+            if pkg.startswith('./docs'):
+                continue
+            elif pkg.startswith('pydantic'):
+                requires.append('pydantic')
+            elif pkg.startswith('https://'):
+                ...
+            else:
+                requires.append(pkg)
+        return requires
+    else:
+        packages = open('void_terminal/requirements.txt').read().strip().split('\n')
+        requires = []
+        for pkg in packages:
+            if pkg.startswith('https://'):
+                requires.append(pkg)
+            else:
+                ...
+        return requires
 
 def package_files(directory, black_list):
     paths = []
@@ -60,12 +72,12 @@ def package_files(directory, black_list):
                 print('ignore', filename)
     return paths
 
-extra_files = package_files('void_terminal', 
+extra_files = package_files('void_terminal',
                             black_list=['multi-language', 'gpt_log', '.git', 'private_upload', 'multi_language.py', 'build', '.github', '.vscode', '__pycache__', 'venv'])
 
 setuptools.setup(
     name="void-terminal",
-    version="0.0.8",
+    version="0.0.9",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
@@ -88,5 +100,6 @@ setuptools.setup(
     include_package_data=True,
     packages=setuptools.find_packages(where="."),
     python_requires=">=3.8",
-    install_requires=_process_requirements(),
+    install_requires=_process_requirements(type='install_requires'),
+    dependency_links=_process_requirements(type='dependency_links'),
 )

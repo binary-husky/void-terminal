@@ -3,14 +3,15 @@
 The CLI & python API for the well-known project [`gpt_academic`](https://github.com/binary-husky/gpt_academic.git).
 
 # Installation
-1. Pip installation.
-```
-pip install void-terminal
-```
 
-2. source installation.
+1. source installation.
 ```
 bash init.bash
+```
+
+2. Pip installation (Not recommended).
+```
+pip install void-terminal
 ```
 
 # Usage (Commandline)
@@ -21,7 +22,7 @@ bash init.bash
 vt -a "hello, world!"
 ```
 
-- Ask about how to do a linux command 
+- Ask about how to do a linux command
 
 ```
 vt -c "List all docker containers currently running on this system"
@@ -43,10 +44,10 @@ vt --set_conf DEFAULT_WORKER_NUM "20"
 
 ```python
 import void_terminal as vt
-# For more available configurations (including network proxy, api, using chatglm etc.), 
+# For more available configurations (including network proxy, api, using chatglm etc.),
 # see config.py of in the mother project:
 # https://github.com/binary-husky/gpt_academic.git
-vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")   
+vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
 vt.set_conf(key="LLM_MODEL", value="gpt-3.5-turbo")
 
 chat_kwargs = vt.get_chat_default_kwargs()
