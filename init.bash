@@ -1,4 +1,4 @@
-# py=C:/Users/fuqingxu/anaconda3/envs/py12/python.exe
+# py=C:/Users/fqxma/AppData/Local/Programs/Python/Python39/python.exe
 py=python3
 
 rm -rf void_terminal
