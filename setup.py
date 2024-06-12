@@ -7,7 +7,10 @@ def pack_up_fix_import():
     source_list = glob.glob('./void_terminal/**/*.py', recursive=True)
     confuse_list = [os.path.basename(t).rsplit('.py')[0] for t in glob.glob('./void_terminal/*.py')]
     from setup_import.fix_import import main
-    shutil.copytree('fake_gradio', 'void_terminal/fake_gradio')
+    try:
+        shutil.copytree('fake_gradio', 'void_terminal/fake_gradio')
+    except:
+        ...
     for fp in source_list:
         main(('--application-directories', '.:void_terminal', fp,))
         with open(fp, 'r', encoding='utf-8', newline='') as fd:
@@ -82,7 +85,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="1.0.0",
+    version="1.0.1",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
