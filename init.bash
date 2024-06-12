@@ -2,7 +2,7 @@
 py=python3
 
 rm -rf void_terminal
-git clone --depth=1 https://github.com/binary-husky/gpt_academic.git -b frontier void_terminal
+git clone --depth=1 https://github.com/binary-husky/gpt_academic.git -b master void_terminal
 cd void_terminal
 $py -m pip install -r requirements.txt
 CACHE_ONLY=True $py multi_language.py
