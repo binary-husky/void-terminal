@@ -11,6 +11,8 @@ def pack_up_fix_import():
         main(('--application-directories', '.:void_terminal', fp,))
         with open(fp, 'r', encoding='utf-8', newline='') as fd:
             buf = fd.read()
+        buf = buf.replace("import core_functional",
+            "from void_terminal.core_functional import get_core_functions")
         buf = buf.replace("importlib.import_module('config')",
             "importlib.import_module('void_terminal.config')")
         buf = buf.replace("importlib.import_module('config_private')",

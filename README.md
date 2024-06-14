@@ -64,10 +64,11 @@ import void_terminal as vt
 from rich.live import Live
 from rich.markdown import Markdown
 
-vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
+# vt.set_conf(key="API_URL_REDIRECT", value='{"https://api.openai.com/v1/chat/completions": "http://11.22.33.44:5566/v1/chat/completions"}')
+vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 vt.set_conf(key="LLM_MODEL", value="gpt-3.5-turbo")
 
-plugin = vt.get_plugin_handle('void_terminal.crazy_functions.BatchTranslateMarkdown->TranslateMarkdownToSpecifiedLanguage')
+plugin = vt.get_plugin_handle('void_terminal.crazy_functions.Markdown_Translate->TranslateMarkdownToSpecifiedLanguage')
 plugin_kwargs = vt.get_plugin_default_kwargs()
 plugin_kwargs['main_input'] = './README.md'
 my_working_plugin = plugin(**plugin_kwargs)
