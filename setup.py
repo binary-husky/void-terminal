@@ -87,7 +87,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="1.1.0",
+    version="1.1.1",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
