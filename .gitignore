@@ -6,3 +6,6 @@ __pycache__
 *.egg-info
 test.py
 dist
+private*
+gpt_log
+.vscode

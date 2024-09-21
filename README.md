@@ -47,8 +47,8 @@ import void_terminal as vt
 # For more available configurations (including network proxy, api, using chatglm etc.),
 # see config.py of in the mother project:
 # https://github.com/binary-husky/gpt_academic.git
-vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")
-vt.set_conf(key="LLM_MODEL", value="gpt-3.5-turbo")
+vt.set_conf(key="API_KEY", value="sk-xxxxxxxxxxxxxx")   # or you can delete this line and set ENV variable
+vt.set_conf(key="LLM_MODEL", value="gpt-3.5-turbo")     # or you can delete this line and set ENV variable
 
 chat_kwargs = vt.get_chat_default_kwargs()
 chat_kwargs['inputs'] = 'Hello, world!'

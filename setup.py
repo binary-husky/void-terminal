@@ -19,6 +19,8 @@ def pack_up_fix_import():
             "import fake_gradio as gr")
         buf = buf.replace("import gradio",
             "import fake_gradio as gradio")
+        buf = buf.replace("import core_functional",
+            "import void_terminal.core_functional")
         buf = buf.replace("importlib.import_module('config')",
             "importlib.import_module('void_terminal.config')")
         buf = buf.replace("importlib.import_module('config_private')",
@@ -85,7 +87,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="1.0.2",
+    version="1.1.0",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",

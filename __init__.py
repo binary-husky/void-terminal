@@ -47,15 +47,14 @@ class VoidTerminal():
     
 vt = VoidTerminal()
 
-
-get_conf = silence_stdout_fn(get_conf)
-set_conf = silence_stdout_fn(set_conf)
-set_multi_conf = silence_stdout_fn(set_multi_conf)
-get_plugin_handle = silence_stdout_fn(get_plugin_handle)
-get_plugin_default_kwargs = silence_stdout_fn(get_plugin_default_kwargs)
-get_chat_handle = silence_stdout_fn(get_chat_handle)
-get_chat_default_kwargs = silence_stdout_fn(get_chat_default_kwargs)
-chat_to_markdown_str = chat_to_markdown_str
+# get_conf = silence_stdout_fn(get_conf)
+# set_conf = silence_stdout_fn(set_conf)
+# set_multi_conf = silence_stdout_fn(set_multi_conf)
+# get_plugin_handle = silence_stdout_fn(get_plugin_handle)
+# get_plugin_default_kwargs = silence_stdout_fn(get_plugin_default_kwargs)
+# get_chat_handle = silence_stdout_fn(get_chat_handle)
+# get_chat_default_kwargs = silence_stdout_fn(get_chat_default_kwargs)
+# chat_to_markdown_str = chat_to_markdown_str
 
 vt.get_conf = get_conf
 vt.set_conf = set_conf
@@ -65,7 +64,6 @@ vt.get_plugin_default_kwargs = get_plugin_default_kwargs
 vt.get_chat_handle = get_chat_handle
 vt.get_chat_default_kwargs = get_chat_default_kwargs
 vt.chat_to_markdown_str = chat_to_markdown_str
-
 
 def chat_to_markdown_str(chat):
     result = ""
@@ -103,7 +101,7 @@ def plugin_shortcut(main_input, plugin, advanced_arg=None):
     plugin_kwargs['main_input'] = main_input
     if advanced_arg is not None:
         plugin_kwargs['plugin_kwargs'] = advanced_arg
-    my_working_plugin = silence_stdout(plugin)(**plugin_kwargs)
+    my_working_plugin = plugin(**plugin_kwargs)
     with Live(Markdown(""), auto_refresh=False, vertical_overflow="visible") as live:
         for cookies, chat, hist, msg in my_working_plugin:
             md_str = vt.chat_to_markdown_str(chat)

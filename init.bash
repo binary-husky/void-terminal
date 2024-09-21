@@ -3,7 +3,7 @@ set -e
 
 py=python3
 repo_url="https://github.com/binary-husky/gpt_academic.git"
-branch="master"
+branch="frontier"
 project_dir="void_terminal"
 project_dir_tmp="${project_dir}_tmp"
 
