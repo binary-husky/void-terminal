@@ -1,5 +1,9 @@
 import sys, os
 
+if not os.environ.get("SHOW_VOID_TERMINAL_LOGS", None):
+    from loguru import logger
+    logger.disable("void_terminal")
+
 from void_terminal.toolbox import get_conf
 from void_terminal.toolbox import set_conf
 from void_terminal.toolbox import set_multi_conf

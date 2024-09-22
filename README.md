@@ -103,7 +103,9 @@ with Live(Markdown(""), auto_refresh=False) as live:
         live.update(md, refresh=True)
 ```
 
+# Advanced Settings with Environment Variables
 
+1. `SHOW_VOID_TERMINAL_LOGS`. Set this Environment Variable to display void terminal logs
 
 
 

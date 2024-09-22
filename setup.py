@@ -15,16 +15,28 @@ def pack_up_fix_import():
         main(('--application-directories', '.:void_terminal', fp,))
         with open(fp, 'r', encoding='utf-8', newline='') as fd:
             buf = fd.read()
+        
+        # disable gradio
         buf = buf.replace("import gradio as gr",
             "import fake_gradio as gr")
         buf = buf.replace("import gradio",
             "import fake_gradio as gradio")
+        
+        # align 1st-layer import
         buf = buf.replace("import core_functional",
             "import void_terminal.core_functional")
         buf = buf.replace("importlib.import_module('config')",
             "importlib.import_module('void_terminal.config')")
         buf = buf.replace("importlib.import_module('config_private')",
                     "importlib.import_module('void_terminal.config_private')")
+        
+        # disable path check
+        buf = buf.replace(
+            "def validate_path_safety(path_or_url, user):",
+            "def validate_path_safety(path_or_url:str, user:str): return True\n\ndef validate_path_safety_replaced(path_or_url, user):",
+        )
+
+        # fix message
         buf = buf.replace(r"""AssertionError("你提供了错误的API_KEY。\n\n1. 临时解决方案：直接在输入区键入api_key，然后回车提交。\n\n2. 长效解决方案：在config.py中配置。")""",
                           r"""AssertionError("You have not provide an API_KEY. \n\n1. In python, run `void_terminal.set_conf('API_KEY', value='sk-abcd')` to load api key\n\n2. In bash, run `vt --set_conf API_KEY 'sk-abcd'`")""")
         with open(fp, 'w', encoding='utf-8', newline='') as fd:
@@ -87,7 +99,7 @@ extra_files = package_files('void_terminal',
 
 setuptools.setup(
     name="void-terminal",
-    version="1.1.1",
+    version="1.1.2",
     author="Qingxu",
     author_email="505030475@qq.com",
     description="LLM based APIs",
