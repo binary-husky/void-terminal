@@ -5,13 +5,22 @@ if not os.environ.get("SHOW_VOID_TERMINAL_LOGS", None):
     logger.disable("void_terminal")
 
 from void_terminal.toolbox import get_conf
-from void_terminal.toolbox import set_conf
-from void_terminal.toolbox import set_multi_conf
+from void_terminal.toolbox import set_conf as _set_conf
+from void_terminal.toolbox import set_multi_conf as _set_multi_conf
 from void_terminal.toolbox import get_plugin_handle
 from void_terminal.toolbox import get_plugin_default_kwargs
 from void_terminal.toolbox import get_chat_handle
 from void_terminal.toolbox import get_chat_default_kwargs
 from functools import wraps
+
+def set_conf(key, value):
+    _set_conf(key, value)
+    os.environ[key] = str(value)
+
+def set_multi_conf(key_value_dict):
+    _set_multi_conf(key_value_dict)
+    for k, v in key_value_dict.items():
+        os.environ[k] = str(v)
 
 def chat_to_markdown_str(chat):
     result = ""
